@@ -1,0 +1,31 @@
+void removerItem (const char* nome) {
+    // Remove o item da mochila pelo nome
+    int encontrado = 0;
+    for (int i = 0; i < total_itens; i++) {
+        if (strcmp(mochila[i].nome, nome) == 0) {
+            encontrado = 1;
+            for (int j = i; j < total_itens - 1; j++) {
+                mochila[j] = mochila[j + 1];
+            }
+            total_itens--;
+            printf("Item '%s' removido da mochila.\n", nome);
+            statusMochila();
+            break;
+        }
+    }
+    if (!encontrado) {
+        printf("Item '%s' não encontrado na mochila.\n", nome);
+    }
+}
+
+void listarItens () {
+    // Lista todos os itens na mochila
+    if (total_itens == 0) {
+        printf("A mochila está vazia.\n");
+    } else {
+        printf("Itens na mochila:\n");
+        for (int i = 0; i < total_itens; i++) {
+            printf("%d. Nome: %s | Tipo: %s | Quantidade: %d\n", i + 1, mochila[i].nome, mochila[i].tipo, mochila[i].quantidade);
+        }
+    }
+}
